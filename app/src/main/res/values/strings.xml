@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">TimeCheck</string>
+    <string name="check_time_act_title_time_check">時刻判断</string>
+    <string name="ckeck_time_act_start_time">開始時刻</string>
+    <string name="check_time_act_end_time">終了時刻</string>
+    <string name="check_time_act_specify_time">ある時刻</string>
+    <string name="check_time_act_check_and_save">判断と結果保存</string>
+
 </resources>
