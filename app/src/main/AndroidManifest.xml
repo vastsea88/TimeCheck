@@ -14,7 +14,7 @@
         android:theme="@style/Theme.TimeCheck"
         tools:targetApi="31">
         <activity
-            android:name=".CheckTimeActivity"
+            android:name=".act.CheckTimeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
