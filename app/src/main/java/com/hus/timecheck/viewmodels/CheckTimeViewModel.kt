@@ -29,14 +29,16 @@ class CheckTimeViewModel @Inject constructor(
 
     val message: LiveData<Event<String>>
         get() = statusMessage
+    val checkResults: LiveData<List<TimeCheckResult>>
+        get() = repository.getAllResults()
 
     fun checkTimeAndSaveResult() {
         if (startTime.value.isNullOrEmpty()) {
-            statusMessage.value = Event("Start Time null")
+            statusMessage.value = Event("開始時刻が空です。")
         } else if (endTime.value.isNullOrEmpty()) {
-            statusMessage.value = Event("end time null")
+            statusMessage.value = Event("完了時刻が空です。")
         } else if (checkTime.value.isNullOrEmpty()) {
-            statusMessage.value = Event("check time null")
+            statusMessage.value = Event("検索時刻が空です。")
         } else {
             val startTime = startTime.value!!.toInt()
             val endTime = endTime.value!!.toInt()
@@ -45,11 +47,6 @@ class CheckTimeViewModel @Inject constructor(
             val result = checkTime in minOf(startTime, endTime)..maxOf(
                 startTime, endTime
             ) && checkTime != endTime
-            if (result) {
-                statusMessage.value = Event("IN")
-            } else {
-                statusMessage.value = Event("OUTSIDE")
-            }
             insert(TimeCheckResult(0, startTime, endTime, checkTime, result))
         }
     }
@@ -57,10 +54,12 @@ class CheckTimeViewModel @Inject constructor(
     private fun insert(result: TimeCheckResult) = viewModelScope.launch(Dispatchers.IO) {
         val newRowId = repository.insert(result)
         withContext(Dispatchers.Main) {
-            if (newRowId > -1) {
-                statusMessage.value = Event("Inserted Successfully! $newRowId")
+            if (newRowId <= -1) {
+                statusMessage.value = Event("エラーが発生しました！")
             } else {
-                statusMessage.value = Event("Error Occurred!")
+                startTime.value = ""
+                endTime.value = ""
+                checkTime.value = ""
             }
         }
     }
