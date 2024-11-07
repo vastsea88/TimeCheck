@@ -57,11 +57,17 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.kotlinx.coroutines.test)
+    androidTestImplementation(libs.truth)
+    androidTestImplementation(libs.room.testing)
+    testImplementation(libs.truth)
+    testImplementation (libs.core.testing)
 
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.hilt.android)
+    androidTestImplementation(libs.core.testing)
     kapt(libs.hilt.compiler)
 
     // Room dependencies

@@ -11,7 +11,7 @@ import kotlinx.parcelize.Parcelize
 data class TimeCheckResult(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "time_check_result_id")
-    val id: Int,
+    val id: Long,
     var startTime: Int,
     var endTime: Int,
     var checkTime: Int,

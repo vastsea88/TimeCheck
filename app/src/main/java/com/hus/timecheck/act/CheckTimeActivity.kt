@@ -50,7 +50,7 @@ class CheckTimeActivity :
         binding.checkTimeResultsRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.checkTimeResultsRecyclerView.adapter = adapter
         viewModel.checkResults.observe(this) {
-            adapter.setList(it)
+            adapter.setList(it.asReversed())
             adapter.notifyDataSetChanged()
             GlobalFunction.hideSoftKeyboard(this)
         }
