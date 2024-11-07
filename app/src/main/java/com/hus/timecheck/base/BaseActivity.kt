@@ -6,13 +6,6 @@ import androidx.activity.ComponentActivity
 import androidx.viewbinding.ViewBinding
 
 
-/**
- * @author May Ann Palencia on 10/13/2023
- * @version 1.0.0
- * @use An abstract class acting as a wrapper to eliminate some boiler codes from our activities.
- * @desc Mobile Developer
- * @since 1.0
- */
 abstract class BaseActivity<VB : ViewBinding>(
     private val setupViewBinding: (LayoutInflater) -> VB
 ) : ComponentActivity() {
